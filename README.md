@@ -1,0 +1,2 @@
+# workshops
+Some workshop resources
