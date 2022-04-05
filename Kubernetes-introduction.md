@@ -93,8 +93,8 @@ watch kubectl get pods --show-labels
 Inspect the ReplicaSet with following commands:
 
 ```sh
-$ kubectl get rs
-$ kubectl describe rs rs-quarkus-demo
+kubectl get rs
+kubectl describe rs rs-quarkus-demo
 ```
 
 Pods are "owned" by the ReplicaSet:
@@ -150,8 +150,8 @@ EOF
 Try following commands:
 
 ```sh
-$ kubectl get pods --show-labels
-$ kubectl exec -it quarkus-demo-deployment-5979886fb7-c888m -- curl localhost:8080
+kubectl get pods --show-labels
+kubectl exec -it quarkus-demo-deployment-5979886fb7-c888m -- curl localhost:8080
 ```
 
 ### Exposing an application
@@ -163,9 +163,9 @@ $ kubectl exec -it quarkus-demo-deployment-5979886fb7-c888m -- curl localhost:80
 Make sure you have Deployment, ReplicaSet and Pods:
 
 ```sh
-$ kubectl get deployments
-$ kubectl get rs
-$ kubectl get pods
+kubectl get deployments
+kubectl get rs
+kubectl get pods
 ```
 
 Create a Service:
