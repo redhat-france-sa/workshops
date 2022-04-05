@@ -197,6 +197,7 @@ You can the change splitting weight and check explicit revision URLs:
 
 ```sh
 kubectl get ksvc blue-green-canary -o yaml | yq r - 'status.traffic[*].url'
+kubectl get ksvc blue-green-canary -o json | jq .status.traffic[].url
 ```
 
 ## Scaling
