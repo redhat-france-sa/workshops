@@ -257,7 +257,7 @@ Explore the content of a Source:
 ```sh
 kn source list
 kn source ping list
-kn source ping describe ping-source
+kn source ping describe eventinghello-ping-source
 ```
 
 ## Channels and Subscriptions
