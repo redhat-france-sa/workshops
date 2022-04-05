@@ -388,7 +388,7 @@ And explore these commands results:
 
 ```sh
 kubectl describe service my-service
-kubectl get endpointskubectl get endpoints my-service -o json | jq '.subsets[].addresses[].ip'
+kubectl get endpoints my-service -o json | jq '.subsets[].addresses[].ip'
 ```
 
 Last commands returns an error because we have no endpoints (Pods) attached to our service.
