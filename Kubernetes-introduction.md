@@ -396,7 +396,7 @@ Last commands returns an error because we have no endpoints (Pods) attached to o
 Because on the DevSandbox deployed on AWS, a loadbalancer ingress is automatically created for you. You need to retrieve the `hostname`:
 
 ```sh
-SVC=$(kubectl get service the-service -o jsonpath="{.status.loadBalancer.ingress[0].hostname}")
+SVC=$(kubectl get service my-service -o jsonpath="{.status.loadBalancer.ingress[0].hostname}")
 ```
 
 Start a loop script that will poll the Service:
