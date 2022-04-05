@@ -177,6 +177,7 @@ Other routes are still there, list them with following commands:
 
 ```sh
 kubectl get ksvc blue-green-canary -o yaml | yq r - 'status.traffic[*].url'
+kubectl get ksvc blue-green-canary -o json | jq .status.traffic[].url
 ```
 
 #### Canary release
