@@ -42,7 +42,7 @@ watch kubectl get pods
 Verify the application in the Pod:
 
 ```sh
-kubectl exec -it quarkus-demo /bin/sh
+kubectl exec -it quarkus-demo -- /bin/sh
 ```
 
 Run the next command. Notice that as you are inside the container instance, the hostname is `localhost`.
