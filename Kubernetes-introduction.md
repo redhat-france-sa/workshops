@@ -451,7 +451,7 @@ kubectl apply -f https://github.com/redhat-scholars/kubernetes-tutorial/raw/mast
 Check that the default resources and limits are applied:
 
 ```sh
-$ kubectl describe $(kubectl get pod -l app=myboot --field-selector 'status.phase!=Terminating' -o name)
+kubectl describe $(kubectl get pod -l app=myboot --field-selector 'status.phase!=Terminating' -o name)
 # On OpenShift Dev sandbox
 Containers:
   myboot:
@@ -472,7 +472,7 @@ QoS Class: BestEffort
 Check that default configuration on OpenShift Dev sandbox:
 
 ```sh
-$ kubectl get limitrange resource-limits -o yaml
+kubectl get limitrange resource-limits -o yaml
 # On OpenShift Dev sandbox
 apiVersion: v1
 kind: LimitRange
@@ -501,16 +501,16 @@ spec:
 Create a service to easily interact with container:
 
 ```sh
-$ kubectl apply -f https://github.com/redhat-scholars/kubernetes-tutorial/raw/master/apps/kubefiles/myboot-service.yml
+kubectl apply -f https://github.com/redhat-scholars/kubernetes-tutorial/raw/master/apps/kubefiles/myboot-service.yml
 ```
 
 Check it's running and explore resource perception:
 
 ```sh
-$ curl myboot:8080      
+curl myboot:8080      
 Bonjour from Spring Boot! 1 on myboot-5dbffd5554-p2wzp
 
-$ curl myboot:8080/sysresources
+curl myboot:8080/sysresources
 Memory: 7042 Cores: 8
 ```
 
@@ -520,10 +520,10 @@ Now see what happen when a pod is consuming all the resources:
 
 ```
 # On another terminal
-$ kubectl logs myboot-5dbffd5554-p2wzp -f
+kubectl logs myboot-5dbffd5554-p2wzp -f
 
 # On primary terminal
-$ curl myboot:8080/consume     
+curl myboot:8080/consume     
 curl: (52) Empty reply from server
 
 # On the other terminal where 'kubectl logs myboot-5dbffd5554-p2wzp -f' runs
@@ -573,7 +573,7 @@ replacing `quay.io/rhdevelopers/myboot:v1` with `quay.io/rhdevelopers/myboot:v2`
 Check the ReplicaSets in your namespace:
 
 ```sh
-$ kubectl get rs
+kubectl get rs
 NAME                                   DESIRED   CURRENT   READY   AGE
 myboot-5dbffd5554                      0         0         0       26m
 myboot-794c47599                       2         2         2       47s
@@ -582,7 +582,7 @@ myboot-794c47599                       2         2         2       47s
 and check out the events section of deployment description:
 
 ```sh
-$ kubectl describe deployment myboot
+kubectl describe deployment myboot
 [...]
 Events:
   Type    Reason             Age    From                   Message
@@ -636,7 +636,7 @@ kubectl apply -f https://github.com/redhat-scholars/kubernetes-tutorial/raw/mast
 Check the probes definitions:
 
 ```sh
-$ kubectl describe deployment myboot
+kubectl describe deployment myboot
 [...]
 Containers:
    myboot:
@@ -680,7 +680,7 @@ Bonjour from Spring Boot! 1 on myboot-8449d5468d-m88z4
 Once you've got a Pod running, you can check the utility of the probe:
 
 ```sh
-$ kubectl exec -it myboot-5f45485689-pqprl /bin/bash
+kubectl exec -it myboot-5f45485689-pqprl /bin/bash
 1024770000@myboot-5f45485689-pqprl:/app$ curl localhost:8080/misbehave
 Misbehaving
 1024770000@myboot-5f45485689-pqprl:/app$ exit
@@ -689,7 +689,7 @@ Misbehaving
 The pod is marked as NotReady and no longer receive requests. You can unstuck it with:
 
 ```sh
-$ kubectl exec -it myboot-5f45485689-pqprl /bin/bash
+kubectl exec -it myboot-5f45485689-pqprl /bin/bash
 1024770000@myboot-5f45485689-pqprl:/app$ curl localhost:8080/behave
 Ain't Misbehaving
 1024770000@myboot-5f45485689-pqprl:/app$ exit
@@ -712,7 +712,7 @@ Jambo from Spring Boot! 1 on myboot-5f8dbf44db-qrxhl
 Now shot the pod making its liveness to return errors:
 
 ```sh
-$ kubectl exec -it myboot-5f8dbf44db-qrxhl /bin/bash
+kubectl exec -it myboot-5f8dbf44db-qrxhl /bin/bash
 1024770000@myboot-5f8dbf44db-qrxhl:/app$ curl localhost:8080/shot
 I have been shot in the head
 1024770000@myboot-5f8dbf44db-qrxhl:/app$
@@ -744,9 +744,9 @@ kubectl scale deployments/myboot --replicas=2
 Environment variables can be added to deployment to contextualize it.
 
 ```sh
-$ kubectl set env deployment/myboot GREETING="Namaste"
+kubectl set env deployment/myboot GREETING="Namaste"
 
-$ kubectl describe deployment/myboot
+kubectl describe deployment/myboot
 ```
 
 ConfigMap is the Kubernetes resource that allows you to externalize your application’s configuration.
